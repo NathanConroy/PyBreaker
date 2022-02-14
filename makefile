@@ -1,7 +1,12 @@
 
+FORCE:
+
 dev:
 	pip install -r requirements-dev.txt
 
-prod:
+tests: FORCE
+	pytest
+
+prod: tests
 	git commit -a
 	git push origin main
