@@ -5,9 +5,10 @@ Tests the pybrkr.py module.
 from src.pybrkr import PyBrkr
 
 SUCCESS_RESP = "success"
+OPEN_RESP = "open"
 
 
-def function(succeed=True):
+def function(succeed: bool = True):
     """
     A function to test out our circuit-breaker on.
 
@@ -20,8 +21,15 @@ def function(succeed=True):
         raise Exception("Failed function call.")
 
 
-def test_decorator_init():
+def test_success():
     """
     Merely tests that the decorator can wrap a function.
     """
-    assert PyBrkr(function)() == SUCCESS_RESP
+    assert PyBrkr(function)(succeed=True) == SUCCESS_RESP
+
+
+def test_failure():
+    """
+    Merely tests that the decorator can handle its wrapped function's failure.
+    """
+    assert PyBrkr(function, open_resp=OPEN_RESP)(succeed=False) == OPEN_RESP
