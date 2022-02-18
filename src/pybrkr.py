@@ -30,6 +30,7 @@ class PyBrkr():
         trip_cond: t.Optional[TripCond] = None,
         open_resp: t.Optional[t.Any] = None,
     ):
+        _check_args(trip_cond)
         self._trip_cond = trip_cond if trip_cond else TripCond()
         self._open_resp = open_resp
 
@@ -49,3 +50,7 @@ class PyBrkr():
                 else:
                     return self(fn)
         return wrapper
+
+def _check_args(trip_cond: TripCond):
+    if trip_cond and not isinstance(trip_cond, TripCond):
+        raise TypeError(f"The given trip_cond is not a TripCond.")
