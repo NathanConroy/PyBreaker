@@ -8,7 +8,9 @@ SUCCESS_RESP = "success"
 OPEN_RESP = "open"
 
 
-@PyBrkr(open_resp=OPEN_RESP)
+@PyBrkr(
+    open_resp=OPEN_RESP
+)
 def test_fn(succeed: bool = True):
     """
     A function to test out our circuit-breaker on.

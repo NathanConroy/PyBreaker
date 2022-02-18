@@ -27,9 +27,10 @@ class PyBrkr():
     """
     def __init__(
         self,
+        trip_cond: t.Optional[TripCond] = None,
         open_resp: t.Optional[t.Any] = None,
     ):
-        self._trip_cond = TripCond()
+        self._trip_cond = trip_cond if trip_cond else TripCond()
         self._open_resp = open_resp
 
     def __call__(self, fn: t.Callable):
